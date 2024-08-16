@@ -1,0 +1,11 @@
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\bin\Debug\net8.0\Infrastructure.deps.json
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\bin\Debug\net8.0\Infrastructure.pdb
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfo.cs
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\Infrastructure.dll
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
+C:\Users\Robertelis\Desktop\Danske\library-api\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
