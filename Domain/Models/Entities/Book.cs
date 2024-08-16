@@ -1,3 +1,6 @@
+using Domain.Models.DTO;
+using Domain.Models.Entities;
+
 namespace Domain.Models.Entities;
 
 public class Book
@@ -8,12 +11,12 @@ public class Book
     public string ISBN { get; set; }
     public int PublicationYear { get; set; }
 
-    public Book(int id, string title, string author, string isbn, int publicationYear)
+    public Book(BookCreateDTO bookCreateDTO)
     {
         Id = id;
-        Title = title;
-        Author = author;
-        ISBN = isbn;
-        PublicationYear = publicationYear;
+        Title = bookCreateDTO.Title;
+        Author = bookCreateDTO.Author;
+        ISBN = bookCreateDTO.ISBN;
+        PublicationYear = bookCreateDTO.PublicationYear;
     }
 }
