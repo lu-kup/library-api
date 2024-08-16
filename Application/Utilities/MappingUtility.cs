@@ -5,7 +5,7 @@ namespace Application.Utilities;
 
 public static class MappingUtility
 {
-    public static BookDTO MapBookDTO(Book book) =>
+    public static BookViewDTO MapBookDTO(Book book) =>
         new()
         {
             Id = book.Id,

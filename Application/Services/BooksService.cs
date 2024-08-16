@@ -20,7 +20,7 @@ public class BookService : IBookService
         _logger = logger;
     }
 
-    public async Task<IEnumerable<BookDTO>> GetAllAsync()
+    public async Task<IEnumerable<BookViewDTO>> GetAllAsync()
     {
         var books = await _repository.GetAllAsync();
 
@@ -29,7 +29,7 @@ public class BookService : IBookService
         return books.Select(x => MappingUtility.MapBookDTO(x));
     }
 
-    public async Task<BookDTO> GetByIdAsync(int bookId)
+    public async Task<BookViewDTO> GetByIdAsync(int bookId)
     {
         var book = await _repository.GetByIdAsync(bookId);
 
@@ -53,7 +53,15 @@ public class BookService : IBookService
 
     public async Task UpdateAsync(int bookId, BookUpdateDTO bookUpdateDTO)
     {
+        var book = await _repository.GetByIdAsync(bookId);
 
+        if (book is null)
+            throw new EntityNotFoundException("msg");
+
+        book.SetValues(bookUpdateDTO);
+        await _repository.Save();
+
+        _logger.LogInformation($"Successfully updated a book with Id {book.Id}.");
     }
 
     public async Task DeleteAsync(int bookId)
