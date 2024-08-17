@@ -43,7 +43,7 @@ public class BookController : ControllerBase
         return StatusCode(201, bookViewDTO);
     }
 
-    [ProducesResponseType(200)]
+    [ProducesResponseType(204)]
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateBook(
         [FromRoute] int id,
@@ -51,15 +51,24 @@ public class BookController : ControllerBase
     {
         await _bookService.UpdateAsync(id, bookUpdateDTO);
 
-        return Ok();
+        return NoContent();
     }
 
-    [ProducesResponseType(200)]
+    [ProducesResponseType(204)]
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteBook(int id)
+    public async Task<ActionResult> DeleteBook([FromRoute] int id)
     {
         await _bookService.DeleteAsync(id);
 
-        return Ok();
+        return NoContent();
+    }
+
+    [ProducesResponseType(200)]
+    [HttpGet("search")]
+    public async Task<ActionResult> SearchBooks([FromQuery(Name = "query")] string searchTerm)
+    {
+        var books = await _bookService.SearchByTitleOrAuthorAsync(searchTerm);
+
+        return Ok(books);
     }
 }

@@ -20,6 +20,17 @@ public class BookRepository : IBookRepository
     public async Task<Book?> GetByIdAsync(int bookId) =>
         await _bookContext.Books.FirstOrDefaultAsync(x => x.Id == bookId);
 
+
+    public async Task<IEnumerable<Book>> FindByTitleOrAuthorAsync(string searchTerm)
+    {
+        var books = await _bookContext.Books
+            .Where(x => x.Title.ToLower().Contains(searchTerm.ToLower())
+                || x.Author.ToLower().Contains(searchTerm.ToLower()))
+            .ToListAsync();
+
+        return books;
+    }
+
     public async Task Insert(Book book) => await _bookContext.Books.AddAsync(book);
 
     public void Remove(Book book) => _bookContext.Books.Remove(book);

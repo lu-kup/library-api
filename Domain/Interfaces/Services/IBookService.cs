@@ -9,4 +9,5 @@ public interface IBookService
     Task<BookViewDTO> CreateAsync(BookCreateDTO bookCreateDTO);
     Task UpdateAsync(int bookId, BookUpdateDTO bookUpdateDTO);
     Task DeleteAsync(int bookId);
+    Task<IEnumerable<BookViewDTO>> SearchByTitleOrAuthorAsync(string searchTerm);
 }

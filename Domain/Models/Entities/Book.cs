@@ -38,7 +38,7 @@ public class Book
 
     private void SetTitle(string title)
     {
-        BookValidation.ValidateIsNullOrEmpty(title);
+        BookValidation.ValidateIsNullOrWhiteSpace(title);
         Title = title;
     }
 

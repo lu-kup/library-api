@@ -6,11 +6,14 @@ using System.Data;
 using Domain.Exceptions;
 using Microsoft.Extensions.Logging;
 using Domain.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Services;
 
 public class BookService : IBookService
 {
+    private const string InvalidSearchTermMessage = "Provided search term is null or whitespace.";
+
     private readonly IBookRepository _bookRepository;
     private readonly ILogger<BookService> _logger;
 
@@ -81,5 +84,19 @@ public class BookService : IBookService
 
         _bookRepository.Remove(book);
         await _bookRepository.Save();
+    }
+
+    public async Task<IEnumerable<BookViewDTO>> SearchByTitleOrAuthorAsync(string searchTerm)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            throw new ValidationException(InvalidSearchTermMessage);
+        }
+
+        var books = await _bookRepository.FindByTitleOrAuthorAsync(searchTerm);
+
+        _logger.LogInformation($"Application found {books.Count()} matching the search term.");
+
+        return books.Select(x => MappingUtility.MapBookDTO(x)); 
     }
 }
