@@ -11,18 +11,18 @@ namespace Application.Services;
 
 public class BookService : IBookService
 {
-    private readonly IBookRepository _repository;
+    private readonly IBookRepository _bookRepository;
     private readonly ILogger<BookService> _logger;
 
-    public BookService(IBookRepository repository, ILogger<BookService> logger)
+    public BookService(IBookRepository bookRepository, ILogger<BookService> logger)
     {
-        _repository = repository;
+        _bookRepository = bookRepository;
         _logger = logger;
     }
 
     public async Task<IEnumerable<BookViewDTO>> GetAllAsync()
     {
-        var books = await _repository.GetAllAsync();
+        var books = await _bookRepository.GetAllAsync();
 
         _logger.LogInformation($"Successfully retrieved {books.Count()} books from the database.");
 
@@ -31,7 +31,7 @@ public class BookService : IBookService
 
     public async Task<BookViewDTO> GetByIdAsync(int bookId)
     {
-        var book = await _repository.GetByIdAsync(bookId);
+        var book = await _bookRepository.GetByIdAsync(bookId);
 
         if (book is null)
             throw new EntityNotFoundException("msg");
@@ -45,35 +45,34 @@ public class BookService : IBookService
     {
         var createdBook = new Book(bookCreateDTO);
 
-        await _repository.Insert(createdBook);
-        await _repository.Save();
+        await _bookRepository.Insert(createdBook);
+        await _bookRepository.Save();
 
         _logger.LogInformation($"Successfully added a new book with Id {createdBook.Id} to the database.");
     }
 
     public async Task UpdateAsync(int bookId, BookUpdateDTO bookUpdateDTO)
     {
-        var book = await _repository.GetByIdAsync(bookId);
+        var book = await _bookRepository.GetByIdAsync(bookId);
 
         if (book is null)
             throw new EntityNotFoundException("msg");
 
-        book.SetValues(bookUpdateDTO);
-        await _repository.Save();
+        book.UpdateValues(bookUpdateDTO);
+        await _bookRepository.Save();
 
         _logger.LogInformation($"Successfully updated a book with Id {book.Id}.");
     }
 
     public async Task DeleteAsync(int bookId)
     {
-        var book = await _repository.GetByIdAsync(bookId);
+        var book = await _bookRepository.GetByIdAsync(bookId);
 
         if (book is null)
             throw new EntityNotFoundException("msg");
 
-        _repository.Remove(book);
-
-        await _repository.Save();
+        _bookRepository.Remove(book);
+        await _bookRepository.Save();
     }
 
 }

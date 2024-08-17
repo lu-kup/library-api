@@ -20,12 +20,15 @@ public class Book
         SetValues(bookCreateDTO);
     }
 
-    public void SetValues(BookBaseDTO bookUpdateDTO)
+    public void UpdateValues(BookUpdateDTO bookUpdateDTO) =>
+        SetValues(bookUpdateDTO);
+
+    private void SetValues(BookBaseDTO bookDTO)
     {
-        Author = bookUpdateDTO.Author;
-        SetTitle(bookUpdateDTO.Title);
-        SetISBN(bookUpdateDTO.ISBN);
-        SetPublicationYear(bookUpdateDTO.PublicationYear);
+        Author = bookDTO.Author;
+        SetTitle(bookDTO.Title);
+        SetISBN(bookDTO.ISBN);
+        SetPublicationYear(bookDTO.PublicationYear);
     }
 
     private void SetTitle(string title)
