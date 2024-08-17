@@ -41,7 +41,7 @@ public class BookService : IBookService
         return MappingUtility.MapBookDTO(book);
     }
 
-    public async Task CreateAsync(BookCreateDTO bookCreateDTO)
+    public async Task<BookViewDTO> CreateAsync(BookCreateDTO bookCreateDTO)
     {
         var createdBook = new Book(bookCreateDTO);
 
@@ -49,6 +49,8 @@ public class BookService : IBookService
         await _bookRepository.Save();
 
         _logger.LogInformation($"Successfully added a new book with Id {createdBook.Id} to the database.");
+
+        return MappingUtility.MapBookDTO(createdBook);
     }
 
     public async Task UpdateAsync(int bookId, BookUpdateDTO bookUpdateDTO)

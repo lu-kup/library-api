@@ -20,7 +20,7 @@ public static class BookValidation
 
     public static void ValidatePublicationYear(int publicationYear)
     {
-        if (publicationYear > DateTime.UtcNow.Year)
+        if (publicationYear > DateTime.UtcNow.Year || publicationYear < 1000)
         {
             throw new ValidationException();  
         }

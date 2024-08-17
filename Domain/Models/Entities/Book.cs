@@ -3,6 +3,7 @@ using System.Data;
 using Domain.Models.DTO;
 using Domain.Models.Entities;
 using Domain.Models.Validation;
+using System;
 
 namespace Domain.Models.Entities;
 
@@ -14,9 +15,13 @@ public class Book
     public string ISBN { get; private set; }
     public int PublicationYear { get; private set; }
 
+    public Book()
+    {
+    }
+
     public Book(BookCreateDTO bookCreateDTO)
     {
-        Id = Guid.NewGuid().GetHashCode();
+        Id = GenerateId();
         SetValues(bookCreateDTO);
     }
 
@@ -48,4 +53,6 @@ public class Book
         BookValidation.ValidatePublicationYear(publicationYear);
         PublicationYear = publicationYear;
     }
+
+    private int GenerateId() => Math.Abs(Guid.NewGuid().GetHashCode());
 }
