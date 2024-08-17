@@ -4,6 +4,7 @@ using Application.Services;
 using Infrastructure.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using LibraryApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();

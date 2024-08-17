@@ -24,7 +24,7 @@ public class BookService : IBookService
     {
         var books = await _bookRepository.GetAllAsync();
 
-        _logger.LogInformation($"Successfully retrieved {books.Count()} books from the database.");
+        _logger.LogInformation($"Application successfully retrieved {books.Count()} books from the database.");
 
         return books.Select(x => MappingUtility.MapBookDTO(x));
     }
@@ -38,7 +38,7 @@ public class BookService : IBookService
             throw new BookNotFoundException(bookId);
         }
 
-        _logger.LogInformation($"Successfully retrieved book with Id {bookId} from the database.");
+        _logger.LogInformation($"Application successfully retrieved book with Id {bookId} from the database.");
 
         return MappingUtility.MapBookDTO(book);
     }
@@ -50,7 +50,7 @@ public class BookService : IBookService
         await _bookRepository.Insert(createdBook);
         await _bookRepository.Save();
 
-        _logger.LogInformation($"Successfully added a new book with Id {createdBook.Id} to the database.");
+        _logger.LogInformation($"Application successfully added a new book with Id {createdBook.Id} to the database.");
 
         return MappingUtility.MapBookDTO(createdBook);
     }
@@ -67,7 +67,7 @@ public class BookService : IBookService
         book.UpdateValues(bookUpdateDTO);
         await _bookRepository.Save();
 
-        _logger.LogInformation($"Successfully updated a book with Id {book.Id}.");
+        _logger.LogInformation($"Application successfully updated a book with Id {book.Id}.");
     }
 
     public async Task DeleteAsync(int bookId)
