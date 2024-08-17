@@ -10,4 +10,7 @@ public class BookContext : DbContext
     }
 
     public DbSet<Book> Books => Set<Book>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder) =>
+        modelBuilder.Entity<Book>().HasKey(x => x.Id);
 }

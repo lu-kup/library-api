@@ -19,11 +19,8 @@ public class Book
     {
     }
 
-    public Book(BookCreateDTO bookCreateDTO)
-    {
-        Id = GenerateId();
+    public Book(BookCreateDTO bookCreateDTO) =>
         SetValues(bookCreateDTO);
-    }
 
     public void UpdateValues(BookUpdateDTO bookUpdateDTO) =>
         SetValues(bookUpdateDTO);
@@ -53,6 +50,4 @@ public class Book
         BookValidation.ValidatePublicationYear(publicationYear);
         PublicationYear = publicationYear;
     }
-
-    private int GenerateId() => Math.Abs(Guid.NewGuid().GetHashCode());
 }
