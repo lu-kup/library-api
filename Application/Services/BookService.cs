@@ -34,7 +34,9 @@ public class BookService : IBookService
         var book = await _bookRepository.GetByIdAsync(bookId);
 
         if (book is null)
-            throw new EntityNotFoundException("msg");
+        {
+            throw new BookNotFoundException(bookId);
+        }
 
         _logger.LogInformation($"Successfully retrieved book with Id {bookId} from the database.");
 
@@ -58,7 +60,9 @@ public class BookService : IBookService
         var book = await _bookRepository.GetByIdAsync(bookId);
 
         if (book is null)
-            throw new EntityNotFoundException("msg");
+        {
+            throw new BookNotFoundException(bookId);
+        }
 
         book.UpdateValues(bookUpdateDTO);
         await _bookRepository.Save();
@@ -71,10 +75,11 @@ public class BookService : IBookService
         var book = await _bookRepository.GetByIdAsync(bookId);
 
         if (book is null)
-            throw new EntityNotFoundException("msg");
+        {
+            throw new BookNotFoundException(bookId);
+        }
 
         _bookRepository.Remove(book);
         await _bookRepository.Save();
     }
-
 }
