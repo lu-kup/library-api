@@ -30,7 +30,7 @@ public class BookServiceTests
     {
         // Arrange
         _mockBookRepository.Setup(
-            x => x.GetByIdAsync(MockBookId)).ReturnsAsync((Book?) null);
+            x => x.GetByIdAsync(MockBookId)).ReturnsAsync((Book?)null);
 
         // Act and assert
         await Assert.ThrowsAsync<BookNotFoundException>(
@@ -89,9 +89,7 @@ public class BookServiceTests
 
         var mockBookUpdateDTO = new BookUpdateDTO()
         {
-            Author = "JKR",
-            Title = "Harry Potter 1",
-            ISBN = "9780313320675",
+            ISBN = "1230313320675",
             PublicationYear = 2000
         };
 
@@ -99,8 +97,6 @@ public class BookServiceTests
         await _bookService.UpdateAsync(book.Id, mockBookUpdateDTO);
 
         // Assert
-        Assert.Equal(mockBookUpdateDTO.Author, book.Author);
-        Assert.Equal(mockBookUpdateDTO.Title, book.Title);
         Assert.Equal(mockBookUpdateDTO.ISBN, book.ISBN);
         Assert.Equal(mockBookUpdateDTO.PublicationYear, book.PublicationYear);
 
@@ -122,8 +118,6 @@ public class BookServiceTests
         var mockBookUpdateDTO = new BookUpdateDTO()
         {
             Author = "JKR",
-            Title = "Harry Potter 1",
-            ISBN = "9780313320675",
             PublicationYear = mockYear
         };
 

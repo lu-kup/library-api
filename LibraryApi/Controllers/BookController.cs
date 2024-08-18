@@ -49,9 +49,9 @@ public class BookController : ControllerBase
         [FromRoute] int id,
         [FromBody] BookUpdateDTO bookUpdateDTO)
     {
-        await _bookService.UpdateAsync(id, bookUpdateDTO);
+        var bookViewDTO = await _bookService.UpdateAsync(id, bookUpdateDTO);
 
-        return NoContent();
+        return Ok(bookViewDTO);
     }
 
     [ProducesResponseType(204)]

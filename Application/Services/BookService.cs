@@ -58,7 +58,7 @@ public class BookService : IBookService
         return MappingUtility.MapBookDTO(createdBook);
     }
 
-    public async Task UpdateAsync(int bookId, BookUpdateDTO bookUpdateDTO)
+    public async Task<BookViewDTO> UpdateAsync(int bookId, BookUpdateDTO bookUpdateDTO)
     {
         var book = await _bookRepository.GetByIdAsync(bookId);
 
@@ -71,6 +71,8 @@ public class BookService : IBookService
         await _bookRepository.Save();
 
         _logger.LogInformation($"Application successfully updated a book with Id {book.Id}.");
+
+        return MappingUtility.MapBookDTO(book);
     }
 
     public async Task DeleteAsync(int bookId)
@@ -97,6 +99,6 @@ public class BookService : IBookService
 
         _logger.LogInformation($"Application found {books.Count()} matching the search term.");
 
-        return books.Select(x => MappingUtility.MapBookDTO(x)); 
+        return books.Select(x => MappingUtility.MapBookDTO(x));
     }
 }

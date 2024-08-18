@@ -25,7 +25,7 @@ public static class BookValidation
     {
         if (publicationYear > DateTime.UtcNow.Year || publicationYear < 1000)
         {
-            throw new ValidationException(InvalidPublicationYearMessage);  
+            throw new ValidationException(InvalidPublicationYearMessage);
         }
     }
 
