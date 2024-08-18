@@ -19,7 +19,7 @@ In order to run the application, use the following command while in `library-api
 dotnet run --project LibraryApi
 ```
 
-In order to test the endpoints, using Swagger interface at `https://localhost:7212/swagger/index.html`
+In order to test the endpoints, use Swagger interface at `https://localhost:7212/swagger/index.html`
 
 The API will be available at `https://localhost:7212` by default. 
 
