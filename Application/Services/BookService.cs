@@ -1,12 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+using System.Data;
+using Microsoft.Extensions.Logging;
+using Application.Utilities;
+using Domain.Exceptions;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.Models.DTO;
-using Application.Utilities;
-using System.Data;
-using Domain.Exceptions;
-using Microsoft.Extensions.Logging;
 using Domain.Models.Entities;
-using System.ComponentModel.DataAnnotations;
 
 namespace Application.Services;
 

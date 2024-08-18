@@ -1,8 +1,8 @@
-using Domain.Models.Entities;
-using Domain.Models.DTO;
-using Infrastructure.Repositories;
-using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Domain.Models.DTO;
+using Domain.Models.Entities;
+using Infrastructure.Data;
+using Infrastructure.Repositories;
 
 namespace UnitTests.Repositories;
 

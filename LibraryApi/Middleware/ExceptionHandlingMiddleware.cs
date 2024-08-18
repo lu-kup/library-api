@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Domain.Exceptions;
 using System.Text.Json;
+using Domain.Exceptions;
 
 namespace LibraryApi.Middleware;
 

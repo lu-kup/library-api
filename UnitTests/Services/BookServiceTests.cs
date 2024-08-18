@@ -1,14 +1,13 @@
-using Moq;
-using Xunit;
-using Domain.Exceptions;
-using Domain.Models.Entities;
-using Domain.Models.DTO;
-using Domain.Interfaces.Services;
-using Domain.Interfaces.Repositories;
-using Application.Services;
-using UnitTests.Mocks;
-using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Logging;
+using Application.Services;
+using Domain.Exceptions;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
+using Domain.Models.DTO;
+using Domain.Models.Entities;
+using Moq;
+using UnitTests.Mocks;
 
 namespace UnitTests.Services;
 
