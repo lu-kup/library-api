@@ -43,7 +43,7 @@ public class BookController : ControllerBase
         return StatusCode(201, bookViewDTO);
     }
 
-    [ProducesResponseType(204)]
+    [ProducesResponseType(200)]
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateBook(
         [FromRoute] int id,
