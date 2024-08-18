@@ -6,6 +6,7 @@ using Domain.Models.DTO;
 using Domain.Interfaces.Services;
 using Domain.Interfaces.Repositories;
 using Application.Services;
+using UnitTests.Mocks;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 
@@ -82,7 +83,7 @@ public class BookServiceTests
     public async Task UpdateAsync_GivenValidData_UpdatesBook()
     {
         // Arrange
-        var book = CreateMockBook();
+        var book = BookMocks.Create();
 
         _mockBookRepository.Setup(
             x => x.GetByIdAsync(book.Id)).ReturnsAsync(book);
@@ -114,7 +115,7 @@ public class BookServiceTests
     public async Task UpdateAsync_GivenInvalidPublicationYear_Throws(int mockYear)
     {
         // Arrange
-        var book = CreateMockBook();
+        var book = BookMocks.Create();
 
         _mockBookRepository.Setup(
             x => x.GetByIdAsync(book.Id)).ReturnsAsync(book);
@@ -130,18 +131,5 @@ public class BookServiceTests
         // Act and assert
         await Assert.ThrowsAsync<ValidationException>(
             async () => await _bookService.UpdateAsync(book.Id, mockBookUpdateDTO));
-    }
-
-    private Book CreateMockBook()
-    {
-        var mockBookCreateDTO = new BookCreateDTO()
-        {
-            Author = "JK Rowling",
-            Title = "Harry Potter and the Philosopher's Stone",
-            ISBN = "978-0-313-32067-5",
-            PublicationYear = 1997
-        };
-
-        return new Book(mockBookCreateDTO);
     }
 }
