@@ -1,3 +1,6 @@
+using Domain.Models.Entities;
+using Domain.Models.DTO;
+
 namespace UnitTests.Mocks;
 
 public static class BookMocks

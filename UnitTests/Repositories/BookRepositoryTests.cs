@@ -1,3 +1,9 @@
+using Domain.Models.Entities;
+using Domain.Models.DTO;
+using Infrastructure.Repositories;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace UnitTests.Repositories;
 
 public class BookRepositoryTests
@@ -7,7 +13,7 @@ public class BookRepositoryTests
     public BookRepositoryTests()
     {
         _options = new DbContextOptionsBuilder<BookContext>()
-            .UseInMemoryDatabase("TestDatabase")
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
     }
 
@@ -49,13 +55,13 @@ public class BookRepositoryTests
         using (var context = new BookContext(_options))
         {
             var repository = new BookRepository(context);
-            var results = await repository.FindByTitleOrAuthorAsync(searchTerm);
+            results = await repository.FindByTitleOrAuthorAsync(searchTerm);
         }
 
         // Assert
-        Assert.Only(results);
-        Asser.Equals(matchingBookCreateDTO.Title, results[0].Title);
-        Asser.Equals(matchingBookCreateDTO.Author, results[0].Author);
+        Assert.Single<Book>(results);
+        Assert.Equal(matchingBook.Title, results.First().Title);
+        Assert.Equal(matchingBook.Author, results.First().Author);
     }
 
     [Theory]
@@ -96,16 +102,16 @@ public class BookRepositoryTests
         using (var context = new BookContext(_options))
         {
             var repository = new BookRepository(context);
-            var results = await repository.FindByTitleOrAuthorAsync(searchTerm);
+            results = await repository.FindByTitleOrAuthorAsync(searchTerm);
         }
 
         // Assert
-        Assert.Only(results);
-        Asser.Equals(matchingBookCreateDTO.Title, results[0].Title);
-        Asser.Equals(matchingBookCreateDTO.Author, results[0].Author);
+        Assert.Single<Book>(results);
+        Assert.Equal(matchingBook.Title, results.First().Title);
+        Assert.Equal(matchingBook.Author, results.First().Author);
     }
 
-    [Fact]
+    [Theory]
     [InlineData("Kudirka")]
     [InlineData("Brolis")]
     public async Task FindByTitleOrAuthorAsync_WithNoMatchingData_ReturnsEmptyCollection(string searchTerm)
@@ -143,7 +149,7 @@ public class BookRepositoryTests
         using (var context = new BookContext(_options))
         {
             var repository = new BookRepository(context);
-            var results = await repository.FindByTitleOrAuthorAsync(searchTerm);
+            results = await repository.FindByTitleOrAuthorAsync(searchTerm);
         }
 
         // Assert
