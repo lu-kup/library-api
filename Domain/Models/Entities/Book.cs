@@ -7,10 +7,11 @@ using System;
 
 namespace Domain.Models.Entities;
 
+#nullable disable warnings
 public class Book
 {
     public int Id { get; init; }
-    public string? Author { get; private set; }
+    public string Author { get; private set; }
     public string Title { get; private set; }
     public string ISBN { get; private set; }
     public int PublicationYear { get; private set; }
