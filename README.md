@@ -4,7 +4,7 @@
 
 This project implements a simple book management API using an in-memory database. The available endpoints include CRUD operations as well as simple search functionality that finds books by title or author.
 
-### Clone the Repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/lu-kup/library-api.git
